@@ -9,13 +9,17 @@ use Doctrine\ORM\Mapping as ORM;
 class Gainage extends Exercise
 {
     #[ORM\Column(type: 'float', nullable: true)]
-    private $poids;
+    private $poids; //kg
 
     #[ORM\Column(type: 'integer')]
-    private $nombre;
+    private $nombre; //nombre d elevées
 
     #[ORM\Column(type: 'boolean')]
     private $actif;
+
+    #[ORM\ManyToOne(targetEntity: TitresGainage::class, inversedBy: 'gainages')]
+    #[ORM\JoinColumn(nullable: false)]
+    private $name; //si mouvement pendant gainage
 
 
     public function getId(): ?int
@@ -55,6 +59,18 @@ class Gainage extends Exercise
     public function setActif(bool $actif): self
     {
         $this->actif = $actif;
+
+        return $this;
+    }
+
+    public function getName(): ?TitresGainage
+    {
+        return $this->name;
+    }
+
+    public function setName(?TitresGainage $name): self
+    {
+        $this->name = $name;
 
         return $this;
     }

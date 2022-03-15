@@ -10,10 +10,14 @@ class Musculation extends Exercise
 {
 
     #[ORM\Column(type: 'float', nullable: true)]
-    private $poids;
+    private $poids; //kg
 
     #[ORM\Column(type: 'integer')]
     private $nombre;
+
+    #[ORM\ManyToOne(targetEntity: TitresMuscu::class, inversedBy: 'musculations')]
+    #[ORM\JoinColumn(nullable: false)]
+    private $name; //nombre de levées
 
     public function getPoids(): ?float
     {
@@ -35,6 +39,18 @@ class Musculation extends Exercise
     public function setNombre(int $nombre): self
     {
         $this->nombre = $nombre;
+
+        return $this;
+    }
+
+    public function getName(): ?TitresMuscu
+    {
+        return $this->name;
+    }
+
+    public function setName(?TitresMuscu $name): self
+    {
+        $this->name = $name;
 
         return $this;
     }

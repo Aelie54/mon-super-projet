@@ -9,20 +9,25 @@ use Doctrine\ORM\Mapping as ORM;
 class Fitness extends Exercise
 {
     #[ORM\Column(type: 'float')]
-    private $durée;
+    private $durée; //en minutes
 
     #[ORM\Column(type: 'float')]
-    private $vitesse;
+    private $vitesse; //km/h
 
     #[ORM\Column(type: 'string', length: 100, nullable: true)]
-    private $pente;
+    private $pente; // ou diffuculté
 
     #[ORM\Column(type: 'integer', nullable: true)]
     private $nombre_pas;
 
+    #[ORM\ManyToOne(targetEntity: TitresFit::class, inversedBy: 'fitnesses')]
+    #[ORM\JoinColumn(nullable: false)]
+    private $name; //pour marche à pied sur tapis ou monte-marche
+
     public function getDurée(): ?float
     {
         return $this->durée;
+
     }
 
     public function setDurée(float $durée): self
@@ -64,6 +69,18 @@ class Fitness extends Exercise
     public function setNombrePas(?int $nombre_pas): self
     {
         $this->nombre_pas = $nombre_pas;
+
+        return $this;
+    }
+
+    public function getName(): ?TitresFit
+    {
+        return $this->name;
+    }
+
+    public function setName(?TitresFit $name): self
+    {
+        $this->name = $name;
 
         return $this;
     }
