@@ -5,9 +5,6 @@ namespace App\DataFixtures;
 use App\Entity\User;
 use App\Entity\Admin;
 use App\Entity\Exercise;
-use App\Entity\Gainage;
-use App\Entity\Musculation;
-use App\Entity\Fitness;
 use App\Entity\TitresFit;
 use App\Entity\TitresGainage;
 use App\Entity\TitresMuscu;
@@ -38,23 +35,23 @@ class AppFixtures extends Fixture
         $user2->setPassword($HashedPassword);
         $manager->persist($user2);
 
-        $gainage = (new TitresGainage)->setName("Title_gainage");
+        $gainage = (new TitresGainage)->setName("Titlegainage");
         $manager->persist($gainage);
 
-        $Muscu = (new TitresMuscu)->setName("Title_Muscu");
-        $manager->persist($Muscu);
+        $muscu = (new TitresMuscu)->setName("TitleMuscu");
+        $manager->persist($muscu);
 
-        $Fit = (new TitresFit)->setName("Title_Fit");
-        $manager->persist($Fit);
+        $fit = (new TitresFit)->setName("TitleFit");
+        $manager->persist($fit);
 
-        $exogainage  = (new Gainage)-> setName($gainage)->setPoids("2")->setNombre("20")->setActif("true");
-        $exomuscu = (new Musculation)-> setName($Muscu)->setPoids('10')->setNombre("20");
-        $exofit = (new Fitness)->setName($Fit)->setDurée("2")->setVitesse("15")->setNombrePas("1800");
-        $manager->persist($exogainage);
-        $manager->persist($exofit);
-        $manager->persist($exomuscu);
+        // $exogainage  = (new Gainage)-> setName($gainage)->setPoids("2")->setNombre("20")->setActif("true");
+        // $exomuscu = (new Musculation)-> setName($Muscu)->setPoids('10')->setNombre("20");
+        // $exofit = (new Fitness)->setName($Fit)->setDurée("2")->setVitesse("15")->setNombrePas("1800");
+        // $manager->persist($exogainage);
+        // $manager->persist($exofit);
+        // $manager->persist($exomuscu);
 
-        $training = (new Training)-> setDate(new Datetime ("2022-03-16"))->setPerson($user1)->addExercise($exogainage)->addExercise($exomuscu)->addExercise($exofit);
+        // $training = (new Training)-> setDate(new Datetime ("2022-03-16"))->setPerson($user1)->addExercise($exogainage)->addExercise($exomuscu)->addExercise($exofit);
 
         $manager->flush();
 
