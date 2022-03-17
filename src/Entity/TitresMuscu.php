@@ -18,7 +18,7 @@ class TitresMuscu
     #[ORM\Column(type: 'string', length: 100)]
     private $name;
 
-    #[ORM\OneToMany(mappedBy: 'name', targetEntity: Musculation::class, orphanRemoval: true)]
+    #[ORM\OneToMany(mappedBy: 'name', targetEntity: Musculation::class, orphanRemoval: true)] //ManyToOne
     private $musculations;
 
     public function __construct()
