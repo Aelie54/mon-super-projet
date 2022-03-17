@@ -19,7 +19,10 @@ class Gainage extends Exercise
 
     #[ORM\ManyToOne(targetEntity: TitresGainage::class, inversedBy: 'gainages')]
     #[ORM\JoinColumn(nullable: false)]
-    private $name; //si mouvement pendant gainage
+    private $name;
+
+    #[ORM\ManyToOne(targetEntity: Exercise::class, inversedBy: 'gainages')]
+    private $exercise; //si mouvement pendant gainage
 
 
     public function getId(): ?int
@@ -71,6 +74,18 @@ class Gainage extends Exercise
     public function setName(?TitresGainage $name): self
     {
         $this->name = $name;
+
+        return $this;
+    }
+
+    public function getExercise(): ?Exercise
+    {
+        return $this->exercise;
+    }
+
+    public function setExercise(?Exercise $exercise): self
+    {
+        $this->exercise = $exercise;
 
         return $this;
     }
