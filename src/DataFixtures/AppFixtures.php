@@ -1,5 +1,4 @@
 <?php
-
 namespace App\DataFixtures;
 
 use App\Entity\User;
@@ -13,7 +12,6 @@ use DateTime;
 use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
 use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Persistence\ObjectManager;
-
 class AppFixtures extends Fixture
 {
     private UserPasswordHasherInterface $encodeur;
