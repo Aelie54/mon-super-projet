@@ -31,7 +31,7 @@ class Training
     public function __construct()
     {
         $this->exercises = new ArrayCollection();
-        $this->exercises2 = new ArrayCollection();
+
     }
 
     public function getId(): ?int
@@ -92,25 +92,25 @@ class Training
      */
     public function getExercises(): Collection
     {
-        return $this->exercises2;
+        return $this->exercises;
     }
 
-    public function addExercises(Exercise $exercises2): self
+    public function addExercises(Exercise $exercises): self
     {
-        if (!$this->exercises2->contains($exercises2)) {
-            $this->exercises2[] = $exercises2;
-            $exercises2->setRelation($this);
+        if (!$this->exercises->contains($exercises)) {
+            $this->exercises[] = $exercises;
+            $exercises->setRelation($this);
         }
 
         return $this;
     }
 
-    public function removeExercises(Exercise $exercises2): self
+    public function removeExercises(Exercise $exercises): self
     {
-        if ($this->exercises2->removeElement($exercises2)) {
+        if ($this->exercises2->removeElement($exercises)) {
             // set the owning side to null (unless already changed)
-            if ($exercises2->getRelation() === $this) {
-                $exercises2->setRelation(null);
+            if ($exercises->getRelation() === $this) {
+                $exercises->setRelation(null);
             }
         }
 
