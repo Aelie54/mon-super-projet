@@ -22,10 +22,7 @@ class Training
     #[ORM\JoinColumn(nullable: false)]
     private $person;
 
-    // #[ORM\ManyToMany(targetEntity: Exercise::class, inversedBy: 'trainings')]
-    // private $exercises;
-
-    #[ORM\OneToMany(mappedBy: 'relation', targetEntity: Exercise::class)]
+    #[ORM\ManyToOne(mappedBy: 'relation', targetEntity: Exercise::class)]
     private $exercises;
 
     public function __construct()
