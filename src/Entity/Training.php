@@ -19,17 +19,10 @@ class Training
     private $date;
 
     #[ORM\ManyToOne(targetEntity: User::class, inversedBy: 'trainings')]
-    #[ORM\JoinColumn(nullable: false)]
     private $person;
 
-    #[ORM\ManyToOne(mappedBy: 'relation', targetEntity: Exercise::class)]
+    #[ORM\ManyToOne(targetEntity: Exercise::class, inversedBy: 'trainings')]
     private $exercises;
-
-    public function __construct()
-    {
-        $this->exercises = new ArrayCollection();
-
-    }
 
     public function getId(): ?int
     {
@@ -60,56 +53,14 @@ class Training
         return $this;
     }
 
-    // /**
-    //  * @return Collection<int, Exercise>
-    //  */
-    // public function getExercises(): Collection
-    // {
-    //     return $this->exercises;
-    // }
-
-    // public function addExercise(Exercise $exercise): self
-    // {
-    //     if (!$this->exercises->contains($exercise)) {
-    //         $this->exercises[] = $exercise;
-    //     }
-
-    //     return $this;
-    // }
-
-    // public function removeExercise(Exercise $exercise): self
-    // {
-    //     $this->exercises->removeElement($exercise);
-
-    //     return $this;
-    // }
-
-    /**
-     * @return Collection<int, Exercise>
-     */
-    public function getExercises(): Collection
+    public function getExercises(): ?Exercise
     {
         return $this->exercises;
     }
 
-    public function addExercises(Exercise $exercises): self
+    public function setExercises(?Exercise $exercises): self
     {
-        if (!$this->exercises->contains($exercises)) {
-            $this->exercises[] = $exercises;
-            $exercises->setRelation($this);
-        }
-
-        return $this;
-    }
-
-    public function removeExercises(Exercise $exercises): self
-    {
-        if ($this->exercises2->removeElement($exercises)) {
-            // set the owning side to null (unless already changed)
-            if ($exercises->getRelation() === $this) {
-                $exercises->setRelation(null);
-            }
-        }
+        $this->exercises = $exercises;
 
         return $this;
     }

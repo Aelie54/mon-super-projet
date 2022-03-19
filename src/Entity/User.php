@@ -31,7 +31,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\Column(type: 'string')]
     private $password;
 
-    #[ORM\OneToMany(mappedBy: 'person', targetEntity: Training::class, orphanRemoval: true)]
+    #[ORM\OneToMany(mappedBy: 'person', targetEntity: Training::class)]
     private $trainings;
 
     public function __construct()

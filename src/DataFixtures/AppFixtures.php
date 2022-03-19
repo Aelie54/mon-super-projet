@@ -39,21 +39,26 @@ class AppFixtures extends Fixture
         $gainage = (new TitresGainage)->setName("Titlegainage");
         $manager->persist($gainage);
 
-        $muscu = (new TitresMuscu)->setName("TitleMuscu");
-        $manager->persist($muscu);
+        // $muscu = (new TitresMuscu)->setName("TitleMuscu");
+        // $manager->persist($muscu);
 
-        $fit = (new TitresFit)->setName("TitleFit");
-        $manager->persist($fit);
+        // $fit = (new TitresFit)->setName("TitleFit");
+        // $manager->persist($fit);
 
-        $exogainage  = (new Gainage)-> setName($gainage)->setPoids("2")->setNombre("20")->setActif("true");
-        $exomuscu = (new Musculation)-> setName($muscu)->setPoids('10')->setNombre("20");
-        $exofit = (new Fitness)->setName($fit)->setDurée("2")->setVitesse("15")->setNombrePas("1800");
+        //erreur lorsque je cherche à créer des exercises! erreur au niveaude new gainage
+        // $exogainage  = (new Exercise); //j'ai essayé avec ça en enlevant le typa classe abstraite mais toujours la même erreur
+        $exogainage=(new Gainage)-> setName($gainage)->setPoids("2")->setNombre("20")->setActif("true");
         $manager->persist($exogainage);
-        $manager->persist($exofit);
-        $manager->persist($exomuscu);
 
-        $training = (new Training)-> setDate(new Datetime ("2022-03-16"))->setPerson($user1)->addExercises($exogainage)->addExercises($exomuscu)->addExercises($exofit);
-        $manager->persist($training);
+        //reste de fixtures...
+        // $exomuscu = (new Musculation)-> setName($muscu)->setPoids('10')->setNombre("20");
+        // $manager->persist($exomuscu);
+
+        // $exofit = (new Fitness)->setName($fit)->setDurée("2")->setVitesse("15")->setNombrePas("1800");
+        // $manager->persist($exofit);
+
+        // $training = (new Training)-> setDate(new Datetime ("2022-03-16"))->setPerson($user1)->setExercises($exogainage)->setExercises($exomuscu)->setExercises($exofit);
+        // $manager->persist($training);
 
         $manager->flush();
 

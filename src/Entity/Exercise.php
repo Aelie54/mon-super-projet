@@ -18,11 +18,19 @@ abstract class Exercise
     #[ORM\ManyToOne(targetEntity: Training::class, inversedBy: 'exercises2')]
     private $relation;
 
+    #[ORM\OneToMany(mappedBy: 'exercises', targetEntity: Training::class)]
+    private $trainings;
+
+    public function __construct()
+    {
+        $this->trainings = new ArrayCollection();
+    }
+
     public function getId(): ?int
     {
         return $this->id;
-    }
 
+    }
     /**
      * @return Collection<int, Training>
      */
@@ -35,7 +43,7 @@ abstract class Exercise
     {
         if (!$this->trainings->contains($training)) {
             $this->trainings[] = $training;
-            $training->addExercise($this);
+            $training->setExercises($this);
         }
 
         return $this;
@@ -44,20 +52,11 @@ abstract class Exercise
     public function removeTraining(Training $training): self
     {
         if ($this->trainings->removeElement($training)) {
-            $training->removeExercise($this);
+            // set the owning side to null (unless already changed)
+            if ($training->getExercises() === $this) {
+                $training->setExercises(null);
+            }
         }
-
-        return $this;
-    }
-
-    public function getRelation(): ?Training
-    {
-        return $this->relation;
-    }
-
-    public function setRelation(?Training $relation): self
-    {
-        $this->relation = $relation;
 
         return $this;
     }
