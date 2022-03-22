@@ -36,29 +36,31 @@ class AppFixtures extends Fixture
         $user2->setPassword($HashedPassword);
         $manager->persist($user2);
 
-        $gainage = (new TitresGainage)->setName("Titlegainage");
-        $manager->persist($gainage);
+        $TitreGainage = (new TitresGainage)->setName("Titlegainage");
+        $manager->persist($TitreGainage);
 
-        // $muscu = (new TitresMuscu)->setName("TitleMuscu");
-        // $manager->persist($muscu);
-
-        // $fit = (new TitresFit)->setName("TitleFit");
-        // $manager->persist($fit);
-
-        //erreur lorsque je cherche à créer des exercises! erreur au niveaude new gainage
-        // $exogainage  = (new Exercise); //j'ai essayé avec ça en enlevant le typa classe abstraite mais toujours la même erreur
-        $exogainage=(new Gainage)-> setName($gainage)->setPoids("2")->setNombre("20")->setActif("true");
+        $exogainage=(new Gainage)-> setIdTitre($TitreGainage)->setPoids("2")->setNombre("20")->setActif("true");
         $manager->persist($exogainage);
 
+         $muscu = (new TitresMuscu)->setName("TitleMuscu");
+         $manager->persist($muscu);
+
+         $fit = (new TitresFit)->setName("TitleFit");
+        $manager->persist($fit);
+
         //reste de fixtures...
-        // $exomuscu = (new Musculation)-> setName($muscu)->setPoids('10')->setNombre("20");
-        // $manager->persist($exomuscu);
+         $exomuscu = (new Musculation)-> setName($muscu)->setPoids('10')->setNombre("20");
+         $manager->persist($exomuscu);
 
-        // $exofit = (new Fitness)->setName($fit)->setDurée("2")->setVitesse("15")->setNombrePas("1800");
-        // $manager->persist($exofit);
+        $exofit = (new Fitness)->setName($fit)->setDurée("2")->setVitesse("15")->setNombrePas("1800");
+        $manager->persist($exofit);
 
-        // $training = (new Training)-> setDate(new Datetime ("2022-03-16"))->setPerson($user1)->setExercises($exogainage)->setExercises($exomuscu)->setExercises($exofit);
-        // $manager->persist($training);
+         $training = (new Training)-> setDate(new Datetime ("2022-03-16"))->setPerson($user1); //->setExercises($exomuscu);
+        // ->setExercises($exogainage)
+        //->addExercisesId($exomuscu)
+        //  ->setExercises($exofit)
+
+         $manager->persist($training);
 
         $manager->flush();
 

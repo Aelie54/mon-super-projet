@@ -19,10 +19,10 @@ class Gainage extends Exercise
 
     #[ORM\ManyToOne(targetEntity: TitresGainage::class, inversedBy: 'gainages')]
     #[ORM\JoinColumn(nullable: false)]
-    private $name;
+    private $id_titre;
 
-    #[ORM\ManyToOne(targetEntity: Exercise::class, inversedBy: 'gainages')]
-    private $exercise; //si mouvement pendant gainage
+    // #[ORM\ManyToOne(targetEntity: Exercise::class, inversedBy: 'gainages')]
+    // private $exercise; //si mouvement pendant gainage
 
 
     public function getId(): ?int
@@ -66,27 +66,16 @@ class Gainage extends Exercise
         return $this;
     }
 
-    public function getName(): ?TitresGainage
+    public function getIdTitre(): ?TitresGainage
     {
-        return $this->name;
+        return $this->id_titre;
     }
 
-    public function setName(?TitresGainage $name): self
+    public function setIdTitre(?TitresGainage $id_titre): self
     {
-        $this->name = $name;
+        $this->id_titre = $id_titre;
 
         return $this;
     }
 
-    public function getExercise(): ?Exercise
-    {
-        return $this->exercise;
-    }
-
-    public function setExercise(?Exercise $exercise): self
-    {
-        $this->exercise = $exercise;
-
-        return $this;
-    }
 }

@@ -13,10 +13,7 @@ abstract class Exercise
     #[ORM\Id]
     #[ORM\GeneratedValue]
     #[ORM\Column(type: 'integer')]
-    private $id;
-
-    #[ORM\ManyToOne(targetEntity: Training::class, inversedBy: 'exercises2')]
-    private $relation;
+    protected $id;
 
     #[ORM\OneToMany(mappedBy: 'exercises', targetEntity: Training::class)]
     private $trainings;
@@ -29,8 +26,8 @@ abstract class Exercise
     public function getId(): ?int
     {
         return $this->id;
-
     }
+
     /**
      * @return Collection<int, Training>
      */
@@ -60,4 +57,5 @@ abstract class Exercise
 
         return $this;
     }
+
 }

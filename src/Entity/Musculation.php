@@ -19,8 +19,8 @@ class Musculation extends Exercise
     #[ORM\JoinColumn(nullable: false)]
     private $name;
 
-    #[ORM\ManyToOne(targetEntity: Exercise::class, inversedBy: 'musculations')]
-    private $exercise; //nombre de levées
+    // #[ORM\ManyToOne(targetEntity: Exercise::class, inversedBy: 'musculations')]
+    // private $exercise; //nombre de levées
 
     public function getPoids(): ?float
     {
@@ -58,15 +58,15 @@ class Musculation extends Exercise
         return $this;
     }
 
-    public function getExercise(): ?Exercise
-    {
-        return $this->exercise;
-    }
+    // public function getExercise(): ?Exercise
+    // {
+    //     return $this->exercise;
+    // }
 
-    public function setExercise(?Exercise $exercise): self
-    {
-        $this->exercise = $exercise;
+    // public function setExercise(?Exercise $exercise): self
+    // {
+    //     $this->exercise = $exercise;
 
-        return $this;
-    }
+    //     return $this;
+    // }
 }

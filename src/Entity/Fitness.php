@@ -24,8 +24,8 @@ class Fitness extends Exercise
     #[ORM\JoinColumn(nullable: false)]
     private $name;
 
-    #[ORM\ManyToOne(targetEntity: Exercise::class, inversedBy: 'fitnesses')]
-    private $exercise; //pour marche à pied sur tapis ou monte-marche
+    // #[ORM\ManyToOne(targetEntity: Exercise::class, inversedBy: 'fitnesses')]
+    // private $exercise; //pour marche à pied sur tapis ou monte-marche
 
     public function getDurée(): ?float
     {
@@ -88,15 +88,15 @@ class Fitness extends Exercise
         return $this;
     }
 
-    public function getExercise(): ?Exercise
-    {
-        return $this->exercise;
-    }
+    // public function getExercise(): ?Exercise
+    // {
+    //     return $this->exercise;
+    // }
 
-    public function setExercise(?Exercise $exercise): self
-    {
-        $this->exercise = $exercise;
+    // public function setExercise(?Exercise $exercise): self
+    // {
+    //     $this->exercise = $exercise;
 
-        return $this;
-    }
+    //     return $this;
+    // }
 }

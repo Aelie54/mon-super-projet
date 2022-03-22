@@ -18,7 +18,7 @@ class TitresGainage
     #[ORM\Column(type: 'string', length: 100)]
     private $name;
 
-    #[ORM\OneToMany(mappedBy: 'name', targetEntity: Gainage::class, orphanRemoval: true)]
+    #[ORM\OneToMany(mappedBy: 'id_titre', targetEntity: Gainage::class)]
     private $gainages;
 
     public function __construct()
@@ -43,7 +43,6 @@ class TitresGainage
         return $this;
     }
 
-
     /**
      * @return Collection<int, Gainage>
      */
@@ -56,7 +55,7 @@ class TitresGainage
     {
         if (!$this->gainages->contains($gainage)) {
             $this->gainages[] = $gainage;
-            $gainage->setName($this);
+            $gainage->setIdTitre($this);
         }
 
         return $this;
@@ -66,11 +65,12 @@ class TitresGainage
     {
         if ($this->gainages->removeElement($gainage)) {
             // set the owning side to null (unless already changed)
-            if ($gainage->getName() === $this) {
-                $gainage->setName(null);
+            if ($gainage->getIdTitre() === $this) {
+                $gainage->setIdTitre(null);
             }
         }
 
         return $this;
     }
+
 }

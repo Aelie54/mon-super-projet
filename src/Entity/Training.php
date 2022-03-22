@@ -24,6 +24,11 @@ class Training
     #[ORM\ManyToOne(targetEntity: Exercise::class, inversedBy: 'trainings')]
     private $exercises;
 
+    public function __construct()
+    {
+        $this->Exercise = new ArrayCollection();
+    }
+
     public function getId(): ?int
     {
         return $this->id;
@@ -64,4 +69,5 @@ class Training
 
         return $this;
     }
+
 }
