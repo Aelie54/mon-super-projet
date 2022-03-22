@@ -55,7 +55,7 @@ class AppFixtures extends Fixture
         $exofit = (new Fitness)->setName($fit)->setDurée("2")->setVitesse("15")->setNombrePas("1800");
         $manager->persist($exofit);
 
-         $training = (new Training)-> setDate(new Datetime ("2022-03-16"))->setPerson($user1); //->setExercises($exomuscu);
+         $training = (new Training)-> setDate(new Datetime ("2022-03-16"))->setPerson($user1)->setExercises($exomuscu);
         // ->setExercises($exogainage)
         //->addExercisesId($exomuscu)
         //  ->setExercises($exofit)
