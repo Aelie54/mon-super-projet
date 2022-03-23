@@ -8,6 +8,10 @@ use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 #[ORM\Entity(repositoryClass: TrainingRepository::class)]
+#[ORM\InheritanceType("JOINED")]
+#[ORM\DiscriminatorColumn('exercise_type', "string")]
+#[ORM\DiscriminatorMap(['gainage' => "Gainage", 'musculation' => "Musculation", 'fitness'=> "Fitness"])]
+#[ORM\Table(name: 'Training')]
 class Training
 {
     #[ORM\Id]
@@ -22,12 +26,7 @@ class Training
     private $person;
 
     #[ORM\ManyToOne(targetEntity: Exercise::class, inversedBy: 'trainings')]
-    private $exercises;
-
-    public function __construct()
-    {
-        $this->Exercise = new ArrayCollection();
-    }
+    private $exercise;
 
     public function getId(): ?int
     {
@@ -58,14 +57,14 @@ class Training
         return $this;
     }
 
-    public function getExercises(): ?Exercise
+    public function getExercise(): ?Exercise
     {
-        return $this->exercises;
+        return $this->exercise;
     }
 
-    public function setExercises(?Exercise $exercises): self
+    public function setExercise(?Exercise $exercise): self
     {
-        $this->exercises = $exercises;
+        $this->exercise = $exercise;
 
         return $this;
     }
