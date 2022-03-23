@@ -8,9 +8,6 @@ use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 #[ORM\Entity(repositoryClass: TrainingRepository::class)]
-#[ORM\InheritanceType("JOINED")]
-#[ORM\DiscriminatorColumn('exercise_type', "string")]
-#[ORM\DiscriminatorMap(['gainage' => "Gainage", 'musculation' => "Musculation", 'fitness'=> "Fitness"])]
 #[ORM\Table(name: 'Training')]
 class Training
 {

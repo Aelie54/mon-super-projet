@@ -45,16 +45,20 @@ class AppFixtures extends Fixture
          $fit = (new TitresFit)->setName("TitleFit");
          $manager->persist($fit);
 
-        $exogainage=(new Gainage)-> setIdTitre($TitreGainage)->setPoids("2")->setNombre("20")->setActif("true");
+        $exogainage=(new Gainage)-> setIdTitre($TitreGainage)
+        ->setPoids("2")->setNombre("20")->setActif("true");
         $manager->persist($exogainage);
 
-         $exomuscu = (new Musculation)-> setName($muscu)->setPoids('10')->setNombre("20");
+         $exomuscu = (new Musculation)-> setName($muscu)
+         ->setPoids('10')->setNombre("20");
          $manager->persist($exomuscu);
 
-        $exofit = (new Fitness)->setName($fit)->setDurée("2")->setVitesse("15")->setNombrePas("1800");
+        $exofit = (new Fitness)->setName($fit)
+        ->setDurée("2")->setVitesse("15")->setNombrePas("1800");
         $manager->persist($exofit);
 
-         $training = (new Training)-> setDate(new Datetime ("2022-03-16"))->setPerson($user1);//->setExercise($exogainage);
+         $training = (new Training)-> setDate(new Datetime ("2022-03-16"))
+         ->setPerson($user1)->setExercise($exogainage);
 
          $manager->persist($training);
 
