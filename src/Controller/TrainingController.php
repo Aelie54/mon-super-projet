@@ -3,7 +3,7 @@
 namespace App\Controller;
 
 use App\Entity\Training;
-use App\Form\TrainingType;
+use App\Form\Training1Type;
 use App\Repository\TrainingRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -25,7 +25,7 @@ class TrainingController extends AbstractController
     public function new(Request $request, TrainingRepository $trainingRepository): Response
     {
         $training = new Training();
-        $form = $this->createForm(TrainingType::class, $training);
+        $form = $this->createForm(Training1Type::class, $training);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
@@ -50,7 +50,7 @@ class TrainingController extends AbstractController
     #[Route('/{id}/edit', name: 'app_training_edit', methods: ['GET', 'POST'])]
     public function edit(Request $request, Training $training, TrainingRepository $trainingRepository): Response
     {
-        $form = $this->createForm(TrainingType::class, $training);
+        $form = $this->createForm(Training1Type::class, $training);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
