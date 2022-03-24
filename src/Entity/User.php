@@ -36,7 +36,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     private $isVerified = false;
 
     public function __tostring(){
-        return $this->firstname . " " . $this->lastname;
+        return $this->email . " " . $this->id;
     }
 
     public function __construct()

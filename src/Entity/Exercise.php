@@ -32,6 +32,11 @@ abstract class Exercise
         return $this->id;
     }
 
+    public function __tostring(){
+        return $this->id ;
+    }
+
+
     /**
      * @return Collection<int, Training>
      */
